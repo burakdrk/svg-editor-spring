@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface SVGElement {
     List<Attribute> getOtherAttributes();
+    void modify(Attribute newAttribute);
 }

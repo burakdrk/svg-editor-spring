@@ -3,33 +3,13 @@ package com.burakduruk.svgeditorspring.model;
 import java.util.LinkedList;
 import java.util.List;
 
-public class SVG implements SVGElement {
-    private String namespace;
-    private String title;
-    private String description;
-
+public class Group implements SVGElement {
     private List<SVGElement> elements;
     private List<Attribute> otherAttributes;
 
-    public SVG(String namespace, String title, String description) {
-        this.namespace = namespace;
-        this.title = title;
-        this.description = description;
-
+    public Group() {
         this.elements = new LinkedList<>();
         this.otherAttributes = new LinkedList<>();
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getNamespace() {
-        return namespace;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public List<SVGElement> getElements() {
