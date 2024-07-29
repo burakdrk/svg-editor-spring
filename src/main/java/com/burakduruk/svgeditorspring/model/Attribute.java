@@ -28,4 +28,9 @@ public class Attribute {
     public boolean equals(Attribute other) {
         return this.name.equals(other.getName()) && this.value.equals(other.getValue());
     }
+
+    @Override
+    public String toString() {
+        return name + "=\"" + value + "\"";
+    }
 }

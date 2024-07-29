@@ -4,31 +4,31 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Circle implements SVGElement {
-    private String cx;
-    private String cy;
-    private String r;
-    private String units;
+    private float cx;
+    private float cy;
+    private float r;
+    private final String units;
 
-    private List<Attribute> otherAttributes;
+    private final List<Attribute> otherAttributes;
 
-    public Circle(String cx, String cy, String r, String units) {
-        this.cx = cx;
-        this.cy = cy;
-        this.r = r;
-        this.units = units;
+    public Circle() {
+        this.cx = 0;
+        this.cy = 0;
+        this.r = 0;
+        this.units = "";
 
         this.otherAttributes = new LinkedList<>();
     }
 
-    public String getCx() {
+    public float getCx() {
         return cx;
     }
 
-    public String getCy() {
+    public float getCy() {
         return cy;
     }
 
-    public String getR() {
+    public float getR() {
         return r;
     }
 
@@ -42,16 +42,21 @@ public class Circle implements SVGElement {
     }
 
     @Override
+    public SVGElementType getType() {
+        return SVGElementType.CIRC;
+    }
+
+    @Override
     public void modify(Attribute newAttribute) {
         switch (newAttribute.getName()) {
             case "cx":
-                this.cx = newAttribute.getValue();
+                this.cx = Float.parseFloat(newAttribute.getValue());
                 return;
             case "cy":
-                this.cy = newAttribute.getValue();
+                this.cy = Float.parseFloat(newAttribute.getValue());
                 return;
             case "r":
-                this.r = newAttribute.getValue();
+                this.r = Float.parseFloat(newAttribute.getValue());
                 return;
         }
 

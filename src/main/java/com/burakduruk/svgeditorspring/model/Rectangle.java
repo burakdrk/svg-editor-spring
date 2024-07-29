@@ -4,37 +4,37 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Rectangle implements SVGElement {
-    private String x;
-    private String y;
-    private String width;
-    private String height;
-    private String units;
+    private float x;
+    private float y;
+    private float width;
+    private float height;
+    private final String units;
 
-    private List<Attribute> otherAttributes;
+    private final List<Attribute> otherAttributes;
 
-    public Rectangle(String x, String y, String width, String height, String units) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.units = units;
+    public Rectangle() {
+        this.x = 0;
+        this.y = 0;
+        this.width = 0;
+        this.height = 0;
+        this.units = "";
 
         this.otherAttributes = new LinkedList<>();
     }
 
-    public String getX() {
+    public float getX() {
         return x;
     }
 
-    public String getY() {
+    public float getY() {
         return y;
     }
 
-    public String getWidth() {
+    public float getWidth() {
         return width;
     }
 
-    public String getHeight() {
+    public float getHeight() {
         return height;
     }
 
@@ -48,19 +48,24 @@ public class Rectangle implements SVGElement {
     }
 
     @Override
+    public SVGElementType getType() {
+        return SVGElementType.RECT;
+    }
+
+    @Override
     public void modify(Attribute newAttribute) {
         switch (newAttribute.getName()) {
             case "x":
-                this.x = newAttribute.getValue();
+                this.x = Float.parseFloat(newAttribute.getValue());
                 return;
             case "y":
-                this.y = newAttribute.getValue();
+                this.y = Float.parseFloat(newAttribute.getValue());
                 return;
             case "width":
-                this.width = newAttribute.getValue();
+                this.width = Float.parseFloat(newAttribute.getValue());
                 return;
             case "height":
-                this.height = newAttribute.getValue();
+                this.height = Float.parseFloat(newAttribute.getValue());
                 return;
         }
 

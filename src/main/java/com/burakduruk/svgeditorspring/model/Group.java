@@ -26,6 +26,11 @@ public class Group implements SVGElement {
     }
 
     @Override
+    public SVGElementType getType() {
+        return SVGElementType.GROUP;
+    }
+
+    @Override
     public void modify(Attribute newAttribute) {
         for (Attribute attribute : otherAttributes) {
             if (attribute.getName().equals(newAttribute.getName())) {

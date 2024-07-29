@@ -1,14 +1,18 @@
 package com.burakduruk.svgeditorspring.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.LinkedList;
 import java.util.List;
 
 public class Path implements SVGElement {
+    @JsonProperty("d")
     private String data;
-    private List<Attribute> otherAttributes;
+    
+    private final List<Attribute> otherAttributes;
 
-    public Path(String data, List<Attribute> otherAttributes) {
-        this.data = data;
-        this.otherAttributes = otherAttributes;
+    public Path() {
+        this.otherAttributes = new LinkedList<>();
     }
 
     public String getData() {
@@ -35,5 +39,22 @@ public class Path implements SVGElement {
         }
 
         otherAttributes.add(newAttribute);
+    }
+
+    @Override
+    public SVGElementType getType() {
+        return SVGElementType.PATH;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<path ");
+        sb.append("d=\"").append(data).append("\" ");
+        for (Attribute attribute : otherAttributes) {
+            sb.append(attribute.toString()).append(" ");
+        }
+        sb.append("/>");
+        return sb.toString();
     }
 }
